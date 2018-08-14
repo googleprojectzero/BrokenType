@@ -1,0 +1,16 @@
+SRC     = main.cpp mutator.cpp random.cpp sfnt_font.cpp sfnt_mutator.cpp
+DEPS    = common.h mutator.h random.h sfnt_font.h sfnt_mutator.h
+OBJ     = $(SRC:.cpp=.o)
+OUT     = mutator
+CFLAGS  = -Wno-multichar
+GCC     = g++
+
+$(OUT): $(OBJ)
+	$(GCC) $(CFLAGS) $(OBJ) -o $(OUT)
+
+%.o: %.cpp
+	$(GCC) $(CFLAGS) $< -c -o $@
+
+clean:
+	rm $(OBJ) $(OUT)
+
