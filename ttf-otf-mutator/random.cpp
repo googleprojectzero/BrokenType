@@ -36,7 +36,6 @@ static void EnsureSeeded() {
   if (!seeded) {
     std::random_device rd;
     globals::generator.seed(rd());
-    globals::generator.seed(time(NULL));
 
     seeded = true;
   }
