@@ -226,6 +226,9 @@ int wmain(int argc, wchar_t *argv[], wchar_t *envp[]) {
       CONST LONG point_sizes[] = { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
 
       for (unsigned int variation_it = 0; success && variation_it < ARRAY_SIZE(point_sizes) + 1; variation_it++) {
+        DbgPrint(L"[+] Starting to test font %u / %d, variation %u / %d",	
+                 font_it + 1, dwFonts, variation_it + 1, ARRAY_SIZE(point_sizes) + 1);
+
         HFONT hFont = NULL;
         if (variation_it == 0) {
           hFont = CreateFontIndirectW(&lpLogfonts[font_it]);

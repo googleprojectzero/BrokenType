@@ -37,7 +37,4 @@
 // usp10!ScriptGetFontLanguageTags and usp10!ScriptGetFontFeatureTags functions.
 #define UNISCRIBE_MAX_TAGS (16)
 
-// The number of different LOGFONT configurations each font is tested in.
-#define FONT_VARIATION_COUNT (5)
-
 #endif  // CONFIG_H_
