@@ -27,6 +27,10 @@
 
 #pragma comment(lib, "Usp10.lib")
 
+#ifndef ARRAY_SIZE
+#define ARRAY_SIZE(x) (sizeof(x) / sizeof(x[0]) )
+#endif
+
 //
 // Undocumented definitions required to use the gdi32!GetFontResourceInfoW function.
 //
@@ -213,31 +217,31 @@ int wmain(int argc, wchar_t *argv[], wchar_t *envp[]) {
 
     HDC hDC = GetDC(NULL);
     SetGraphicsMode(hDC, GM_ADVANCED);
+		SetMapMode(hDC, MM_TEXT);
 
     // Display all fonts from the input file.
     BOOL success = TRUE;
     for (DWORD font_it = 0; success && font_it < dwFonts; font_it++) {
-      // Display the font in several various (but deterministic, due to constant PRNG seed) configurations.
-      for (unsigned int variation_it = 0; success && variation_it < FONT_VARIATION_COUNT; variation_it++) {
-        DbgPrint(L"[+] Starting to test font %u / %d, variation %u / %d",
-                 font_it + 1, dwFonts, variation_it + 1, FONT_VARIATION_COUNT);
+			// Display the font in several different point sizes.
+			CONST LONG point_sizes[] = { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
 
-        HFONT hFont = NULL;
-        if (variation_it == 0) {
-          hFont = CreateFontIndirectW(&lpLogfonts[font_it]);
-        } else {
-          LOGFONTW lf;
-          RtlCopyMemory(&lf, &lpLogfonts[font_it], sizeof(LOGFONTW));
+			for (unsigned int variation_it = 0; success && variation_it < ARRAY_SIZE(point_sizes) + 1; variation_it++) {
+				HFONT hFont = NULL;
+				if (variation_it == 0) {
+					hFont = CreateFontIndirectW(&lpLogfonts[font_it]);
+				} else {
+					LOGFONTW lf;
+					RtlCopyMemory(&lf, &lpLogfonts[font_it], sizeof(LOGFONTW));
 
-          lf.lfHeight = (rand() % 80) - 40;
-          lf.lfWeight = (rand() % 10) * 100;
-          lf.lfItalic = (rand() & 1);
-          lf.lfUnderline = (rand() & 1);
-          lf.lfStrikeOut = (rand() & 1);
-          lf.lfQuality = (rand() % 6);
+					lf.lfHeight = -MulDiv(point_sizes[variation_it - 1], GetDeviceCaps(hDC, LOGPIXELSY), 72);
+					lf.lfWeight = 0;
+					lf.lfItalic = (rand() & 1);
+					lf.lfUnderline = (rand() & 1);
+					lf.lfStrikeOut = (rand() & 1);
+					lf.lfQuality = (rand() % 6);
 
-          hFont = CreateFontIndirectW(&lf);
-        }
+					hFont = CreateFontIndirectW(&lf);
+				}
 
         if (hFont == NULL) {
           DbgPrint(L"[!]   CreateFontIndirectW() failed.");
