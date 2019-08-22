@@ -6,6 +6,7 @@ BrokenType is a set of tools designed to test the robustness and security of fon
  - **[TTF/OTF mutator](ttf-otf-mutator)** - a semi-"smart" binary font file mutator written in C++.
  - **[TTF/OTF loader for Windows GDI](ttf-otf-windows-loader)** - a utility for loading and testing custom fonts with Windows GDI / Uniscribe.
  - **[TTF/OTF loader for DirectWrite](ttf-otf-dwrite-loader)** - a utility for loading and testing custom fonts with the Microsoft DirectWrite API.
+ - **[TTF loader for Windows FontSub.dll](ttf-fontsub-loader)** - a utility for loading and testing custom fonts wiht the Windows Font Subsetting library.
  - **[PDF font embedders](font2pdf)** - Python scripts for generating PDF documents which embed the specified fonts and display all of their glyphs.
 
 The description and usage instructions of the utilities can be found in their corresponding READMEs.
