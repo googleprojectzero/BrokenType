@@ -4,7 +4,8 @@ BrokenType is a set of tools designed to test the robustness and security of fon
 
  - **[TrueType program generator](truetype-generator)** - a Python script for generating random, but valid [TrueType programs](https://docs.microsoft.com/en-us/typography/opentype/spec/ttinst).
  - **[TTF/OTF mutator](ttf-otf-mutator)** - a semi-"smart" binary font file mutator written in C++.
- - **[TTF/OTF font loader for Windows](ttf-otf-windows-loader)** - a utility for loading and comprehensively testing custom fonts in Windows.
+ - **[TTF/OTF font loader for Windows GDI](ttf-otf-windows-loader)** - a utility for loading and testing custom fonts with Windows GDI / Uniscribe.
+ - **[TTF/OTF font loader for DirectWrite](ttf-otf-dwrite-loader)** - a utility for loading and testing custom fonts with the Microsoft DirectWrite API.
  - **[PDF font embedders](font2pdf)** - Python scripts for generating PDF documents which embed the specified fonts and display all of their glyphs.
 
 The description and usage instructions of the utilities can be found in their corresponding READMEs.
