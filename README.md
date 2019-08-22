@@ -1,14 +1,15 @@
 # BrokenType
 
-BrokenType is a set of tools designed to test the robustness and security of font rasterization software, especially codebases prone to memory corruption issues (written in C/C++ and similar languages). It consists of three components:
+BrokenType is a set of tools designed to test the robustness and security of font rasterization software, especially codebases prone to memory corruption issues (written in C/C++ and similar languages). It consists of the following components:
 
  - **[TrueType program generator](truetype-generator)** - a Python script for generating random, but valid [TrueType programs](https://docs.microsoft.com/en-us/typography/opentype/spec/ttinst).
  - **[TTF/OTF mutator](ttf-otf-mutator)** - a semi-"smart" binary font file mutator written in C++.
- -  **[TTF/OTF font loader for Windows](ttf-otf-windows-loader)** - a utility for loading and comprehensively testing custom fonts in Windows.
+ - **[TTF/OTF font loader for Windows](ttf-otf-windows-loader)** - a utility for loading and comprehensively testing custom fonts in Windows.
+ - **[PDF font embedders](font2pdf)** - Python scripts for generating PDF documents which embed the specified fonts and display all of their glyphs.
 
 The description and usage instructions of the utilities can be found in their corresponding READMEs.
 
-The programs and scripts were successfully used in 2015-2017 to discover and report [20](https://bugs.chromium.org/p/project-zero/issues/list?can=1&q=status:fixed%20finder:mjurczyk%20product:kernel%20methodology:mutation-fuzzing%20font&colspec=ID%20Status%20Restrict%20Reported%20Vendor%20Product%20Finder%20Summary&cells=ids) vulnerabilities in the font rasterization code present in the Windows kernel (`win32k.sys` and `atmfd.dll` drivers), and further [19](https://bugs.chromium.org/p/project-zero/issues/list?can=1&q=status:fixed%20finder:mjurczyk%20uniscribe&colspec=ID%20Status%20Restrict%20Reported%20Vendor%20Product%20Finder%20Summary&cells=ids) security flaws in the user-mode Microsoft Uniscribe library. The fuzzing efforts were discussed in the following Google Project Zero blog posts:
+The programs and scripts were successfully used in 2015-2019 to discover and report [20](https://bugs.chromium.org/p/project-zero/issues/list?can=1&q=status:fixed%20finder:mjurczyk%20product:kernel%20methodology:mutation-fuzzing%20font&colspec=ID%20Status%20Restrict%20Reported%20Vendor%20Product%20Finder%20Summary&cells=ids) vulnerabilities in the font rasterization code present in the Windows kernel (`win32k.sys` and `atmfd.dll` drivers), [19](https://bugs.chromium.org/p/project-zero/issues/list?can=1&q=status:fixed%20finder:mjurczyk%20uniscribe&colspec=ID%20Status%20Restrict%20Reported%20Vendor%20Product%20Finder%20Summary&cells=ids) security flaws in the user-mode Microsoft Uniscribe library, as well as [9](https://bugs.chromium.org/p/project-zero/issues/list?colspec=ID%20Status%20Restrict%20Reported%20Vendor%20Product%20Finder%20Summary&cells=ids&q=status%3Afixed%20finder%3Amjurczyk%20fontsub&can=1) bugs in the `FontSub.dll` library and several issues in DirectWrite. The fuzzing efforts were discussed in the following Google Project Zero blog posts:
 
  - [A year of Windows kernel font fuzzing #1: the results](https://googleprojectzero.blogspot.com/2016/06/a-year-of-windows-kernel-font-fuzzing-1_27.html) (June 2016)
  - [A year of Windows kernel font fuzzing #2: the techniques](https://googleprojectzero.blogspot.com/2016/07/a-year-of-windows-kernel-font-fuzzing-2.html) (July 2016)
