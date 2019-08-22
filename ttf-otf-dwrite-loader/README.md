@@ -1,6 +1,6 @@
 # Font loader for Microsoft DirectWrite
 
-The loader is designed to load font files using the DirectWrite interface (the engine used by all major Windows web browsers at the time of this writing), and test its rasterization code against potentially malformed input. The purpose of the program is to stress-test as much font-handling code as possible, and to execute it for all glyphs found in the font file instead of a limited charset such as just the ASCII characters.
+The loader is designed to load font files using the [DirectWrite](https://docs.microsoft.com/en-us/windows/win32/directwrite/direct-write-portal) interface (the engine used by all major Windows web browsers at the time of this writing), and test its rasterization code against potentially malformed input. The purpose of the program is to stress-test as much font-handling code as possible, and to execute it for all glyphs found in the font file instead of a limited charset such as just the ASCII characters.
 
 The font-related DirectWrite calls made by the loader are listed below:
 
