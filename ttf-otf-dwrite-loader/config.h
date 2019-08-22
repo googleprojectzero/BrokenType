@@ -25,6 +25,6 @@
 #define RENDER_TARGET_HEIGHT 600
 
 // Number of glyphs displayed at once.
-#define DISPLAYED_GLYPHS_COUNT (10)
+#define DISPLAYED_GLYPHS_COUNT 10
 
 #endif  // CONFIG_H_

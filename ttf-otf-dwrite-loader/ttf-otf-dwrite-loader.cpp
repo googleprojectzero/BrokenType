@@ -201,6 +201,6 @@ int wmain(int argc, wchar_t *argv[], wchar_t *envp[]) {
   pGdiInterop->Release();
   pDWriteFactory->Release();
 
-	return 0;
+  return 0;
 }
 
